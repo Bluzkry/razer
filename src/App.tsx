@@ -51,6 +51,7 @@ function App() {
           </a>
         </span>
       </header>
+      <div>foo</div>
     </div>
   );
 }
