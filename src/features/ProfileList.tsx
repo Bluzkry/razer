@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
+import { DeleteBox } from './DeleteBox';
 import { ProfileItem } from './ProfileItem';
 import { selectProfiles, selectActiveProfile, moveProfile, addProfile } from '../state/profileSlice';
 
@@ -9,6 +10,8 @@ export const ProfileList: React.FC<Props> = ({}) => {
   const profiles = useAppSelector(selectProfiles);
   const activeProfile = useAppSelector(selectActiveProfile);
   const dispatch = useAppDispatch();
+
+  const [deleting, setDeleting] = useState(false);
 
   return (
     <div className="thx-drawer flex">
@@ -24,7 +27,7 @@ export const ProfileList: React.FC<Props> = ({}) => {
         <div className="toolbar flex">
           <div className="icon add" onClick={() => dispatch(addProfile())} />
           <div className="icon edit" />
-          <div className="icon delete" />
+          {activeProfile.type === 'custom' && <div className="icon delete" onClick={() => setDeleting(true)} />}
 
           <div
             className={`icon down ${activeProfile.position === profiles.length && 'disabled'}`}
@@ -35,11 +38,15 @@ export const ProfileList: React.FC<Props> = ({}) => {
             onClick={() => dispatch(moveProfile({ id: activeProfile.id, moveUp: true }))}
           />
         </div>
-        <div className="profile-del alert flex">
-          <div className="title">delete eq</div>
-          <div className="body-text t-center">delete eq</div>
-          <div className="thx-btn">delete</div>
-        </div>
+
+        {deleting && (
+          <DeleteBox
+            id={activeProfile.id}
+            name={activeProfile.name}
+            position={activeProfile.position}
+            setDeleting={setDeleting}
+          />
+        )}
       </div>
     </div>
   );

@@ -64,10 +64,24 @@ export const profileSlice = createSlice({
         data: [...state.data.map((profile) => ({ ...profile, active: false })), newProfile],
       };
     },
+    deleteProfile: (state, { payload }: { payload: { id: string; position: number } }) => {
+      const data = state.data.reduce<Array<Profile>>((profiles, profile) => {
+        let { id, active, position } = profile;
+        if (payload.id === id) return profiles;
+        if (payload.position < profile.position) position--;
+        if (payload.position === profile.position + 1) active = true;
+        return [...profiles, { ...profile, active, position }];
+      }, []);
+
+      return {
+        ...state,
+        data,
+      };
+    },
   },
 });
 
-export const { setSelectedProfile, moveProfile, addProfile } = profileSlice.actions;
+export const { setSelectedProfile, moveProfile, addProfile, deleteProfile } = profileSlice.actions;
 
 export const selectProfiles = createSelector(
   (state: RootState) => state.profiles.data,

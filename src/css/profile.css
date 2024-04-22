@@ -83,10 +83,9 @@
 }
 .toolbar > .icon.delete {
 	background-image: url('/public/assets/images/icon_delete.svg');
-	display: none;
+	display: block;
 }
-.toolbar > .icon.edit.show,
-.toolbar > .icon.delete.show {
+.toolbar > .icon.edit.show {
 	display: block;
 }
 .toolbar > .icon.up {
@@ -231,15 +230,10 @@ input.profile-item:active {
     left: 127px;
     top: 205px;
 	display: flex !important;
-	visibility: hidden;
-	opacity: 0;
+	text-transform: capitalize;
 
 	will-change: visibility, opacity;
 	transition: visibility 0s, opacity 0.3s linear;
-}
-.profile-del.show {
-	visibility: visible;
-	opacity: 1;
 }
 .alert .title {
 	font-size: 14px;
