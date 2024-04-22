@@ -79,13 +79,10 @@
 }
 .toolbar > .icon.edit {
 	background-image: url('/public/assets/images/icon_edit.svg');
-	display: none;
+	display: block;
 }
 .toolbar > .icon.delete {
 	background-image: url('/public/assets/images/icon_delete.svg');
-	display: block;
-}
-.toolbar > .icon.edit.show {
 	display: block;
 }
 .toolbar > .icon.up {
@@ -132,21 +129,18 @@
 	will-change: color, background-color;
 	transition: color .2s, background-color .2s;
 }
-input.profile-item {
+.profile-item input {
     z-index: 2;
 	font-family: 'Roboto', sans-serif;
 	position: absolute;
-	display: none;
-    width: calc(100% - 30px);
-    margin-left: 30px;
+	display: flex;
+    width: 162px;
     border: 1px solid #44d62c;
     box-sizing: border-box;
     background-color: #111 !important;
-    padding: 3px 10px 5px 5px;
-    line-height: 20px;
-}
-input.profile-item.show {
-	display: block;
+		color: #ccc;
+		text-transform: capitalize;
+    line-height: 26px;
 }
 .profile-item:hover {
 	cursor: pointer;
@@ -158,9 +152,6 @@ input.profile-item.show {
 }
 .profile-item.active {
 	color: #44d62c;
-}
-input.profile-item:active {
-	color: #ccc;
 }
 .profile-item::before {
     content: " ";

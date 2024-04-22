@@ -78,10 +78,21 @@ export const profileSlice = createSlice({
         data,
       };
     },
+    renameProfile: (state, { payload }: { payload: { id: string; name: string } }) => {
+      const data = state.data.map((profile) => {
+        if (profile.id === payload.id) return { ...profile, name: payload.name };
+        return profile;
+      });
+
+      return {
+        ...state,
+        data,
+      };
+    },
   },
 });
 
-export const { setSelectedProfile, moveProfile, addProfile, deleteProfile } = profileSlice.actions;
+export const { setSelectedProfile, moveProfile, addProfile, deleteProfile, renameProfile } = profileSlice.actions;
 
 export const selectProfiles = createSelector(
   (state: RootState) => state.profiles.data,

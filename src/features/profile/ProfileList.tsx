@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import { useAppSelector, useAppDispatch } from '../app/hooks';
-import { DeleteBox } from './DeleteBox';
-import { InputItem } from './InputItem';
-import { ProfileItem } from './ProfileItem';
-import { selectProfiles, selectActiveProfile, moveProfile, addProfile, renameProfile } from '../state/profileSlice';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { DeleteBox } from '../profile-detail/DeleteBox';
+import { InputItem } from '../profile-detail/InputItem';
+import { ProfileItem } from '../profile-detail/ProfileItem';
+import { selectProfiles, selectActiveProfile, moveProfile, addProfile, renameProfile } from '../../state/profileSlice';
 
 type Props = {};
 
@@ -38,7 +38,6 @@ export const ProfileList: React.FC<Props> = ({}) => {
 
         <div className="toolbar flex">
           <div className="icon add" onClick={() => dispatch(addProfile())} />
-          <div className="icon edit" />
           {activeProfile.type === 'custom' && (
             <>
               <div id="profileEdit" className="icon edit" onClick={() => setEditing(!editing)} />
