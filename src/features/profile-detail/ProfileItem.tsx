@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useAppDispatch } from '../app/hooks';
-import { setSelectedProfile } from '../state/profileSlice';
+import { useAppDispatch } from '../../app/hooks';
+import { setSelectedProfile } from '../../state/profileSlice';
 
 type Props = {
   id: string;

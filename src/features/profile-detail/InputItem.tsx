@@ -34,7 +34,7 @@ export const InputItem: React.FC<Props> = ({ name, setEditing, submitName }) => 
         document.removeEventListener('mousedown', handleClickOutside);
         document.removeEventListener('keyup', handleEnterKey);
       };
-    }, [inputRef, inputName]);
+    }, [ref, inputName]);
   };
 
   useOutsideAlert(inputRef);

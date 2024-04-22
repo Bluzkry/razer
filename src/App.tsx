@@ -1,6 +1,6 @@
 import React from 'react';
-import { ProfileList } from './features/ProfileList';
-import { ProfileView } from './features/ProfileView';
+import { ProfileList } from './features/profile/ProfileList';
+import { ProfileView } from './features/profile/ProfileView';
 
 import './css/profile.css';
 import './css/tooltip.css';

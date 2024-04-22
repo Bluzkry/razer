@@ -6,9 +6,7 @@ import { InputItem } from '../profile-detail/InputItem';
 import { ProfileItem } from '../profile-detail/ProfileItem';
 import { selectProfiles, selectActiveProfile, moveProfile, addProfile, renameProfile } from '../../state/profileSlice';
 
-type Props = {};
-
-export const ProfileList: React.FC<Props> = ({}) => {
+export const ProfileList: React.FC = () => {
   const profiles = useAppSelector(selectProfiles);
   const activeProfile = useAppSelector(selectActiveProfile);
   const dispatch = useAppDispatch();
@@ -37,7 +35,7 @@ export const ProfileList: React.FC<Props> = ({}) => {
         </div>
 
         <div className="toolbar flex">
-          <div className="icon add" onClick={() => dispatch(addProfile())} />
+          <div className="icon add" data-testid="addProfile" onClick={() => dispatch(addProfile())} />
           {activeProfile.type === 'custom' && (
             <>
               <div id="profileEdit" className="icon edit" onClick={() => setEditing(!editing)} />
@@ -47,10 +45,12 @@ export const ProfileList: React.FC<Props> = ({}) => {
 
           <div
             className={`icon down ${activeProfile.position === profiles.length && 'disabled'}`}
+            data-testid="moveDownProfile"
             onClick={() => dispatch(moveProfile({ id: activeProfile.id, moveUp: false }))}
           />
           <div
             className={`icon up ${activeProfile.position === 1 && 'disabled'}`}
+            data-testid="moveUpProfile"
             onClick={() => dispatch(moveProfile({ id: activeProfile.id, moveUp: true }))}
           />
         </div>

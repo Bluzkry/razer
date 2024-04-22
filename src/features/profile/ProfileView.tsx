@@ -1,10 +1,8 @@
 import React from 'react';
-import { useAppSelector } from '../app/hooks';
-import { selectActiveProfile } from '../state/profileSlice';
+import { useAppSelector } from '../../app/hooks';
+import { selectActiveProfile } from '../../state/profileSlice';
 
-type Props = {};
-
-export const ProfileView: React.FC<Props> = ({}) => {
+export const ProfileView: React.FC = () => {
   const profile = useAppSelector(selectActiveProfile);
 
   return (

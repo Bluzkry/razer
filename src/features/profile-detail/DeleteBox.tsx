@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, RefObject } from 'react';
 
-import { useAppDispatch } from '../app/hooks';
-import { deleteProfile } from '../state/profileSlice';
+import { useAppDispatch } from '../../app/hooks';
+import { deleteProfile } from '../../state/profileSlice';
 
 type Props = {
   id: string;
@@ -23,7 +23,7 @@ export const DeleteBox: React.FC<Props> = ({ id, name, position, setDeleting }) 
 
       document.addEventListener('mousedown', handleClickOutside);
       return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, [deleteRef]);
+    }, [ref]);
   };
 
   useOutsideAlert(deleteRef);
