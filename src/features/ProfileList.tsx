@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
 import { ProfileItem } from './ProfileItem';
-import { selectProfiles, selectActiveProfile, moveProfile } from '../state/profileSlice';
+import { selectProfiles, selectActiveProfile, moveProfile, addProfile } from '../state/profileSlice';
 
 type Props = {};
 
@@ -20,8 +20,9 @@ export const ProfileList: React.FC<Props> = ({}) => {
           ))}
           <input className="profile-item" placeholder="Enter Profile Name" maxLength={25} />
         </div>
+
         <div className="toolbar flex">
-          <div className="icon add" />
+          <div className="icon add" onClick={() => dispatch(addProfile())} />
           <div className="icon edit" />
           <div className="icon delete" />
 

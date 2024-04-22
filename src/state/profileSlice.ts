@@ -50,10 +50,24 @@ export const profileSlice = createSlice({
         data,
       };
     },
+    addProfile: (state) => {
+      const newProfile = {
+        id: Math.floor(Math.random() * 100000000).toString(), // TODO: In real project, replace with real random number generator.
+        position: state.data.length + 1,
+        type: 'custom',
+        name: 'New Profile',
+        active: true,
+      };
+
+      return {
+        ...state,
+        data: [...state.data.map((profile) => ({ ...profile, active: false })), newProfile],
+      };
+    },
   },
 });
 
-export const { setSelectedProfile, moveProfile } = profileSlice.actions;
+export const { setSelectedProfile, moveProfile, addProfile } = profileSlice.actions;
 
 export const selectProfiles = createSelector(
   (state: RootState) => state.profiles.data,
