@@ -6,7 +6,7 @@ import profileReducer from '../state/profileSlice';
 import { ProfileState } from '../state/profileTypes';
 
 // @ts-ignore
-const composeEnhancers = (window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose) || compose;
+// const composeEnhancers = (window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose) || compose;
 
 const cachedStore: { profiles: ProfileState } = loadFromLocalStorage();
 
