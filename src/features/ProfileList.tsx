@@ -1,20 +1,21 @@
 import React from 'react';
+import { useAppSelector } from '../app/hooks';
 import { ProfileItem } from './ProfileItem';
+import { selectProfiles } from '../state/profileSlice';
 
 type Props = {};
 
 export const ProfileList: React.FC<Props> = ({}) => {
+  const profiles = useAppSelector(selectProfiles);
+
   return (
     <div className="thx-drawer flex">
       <div className="main-title">Profile List</div>
       <div id="profileWrapper" className="drawer-select flex">
         <div id="profileList" className="scrollable">
-          <ProfileItem key="0" type="default" name="default" active />
-          <ProfileItem key="1" type="game" name="game" />
-          <ProfileItem key="2" type="movie" name="movie" />
-          <ProfileItem key="3" type="music" name="music" />
-          <ProfileItem key="4" type="custom" name="custom 1" />
-          <ProfileItem key="5" type="custom" name="demo long text demo long text demo" />
+          {profiles.map(({ id, type, name, active }) => (
+            <ProfileItem key={id} id={id} type={type} name={name} active={active} />
+          ))}
           <input id="profileRename" className="profile-item" placeholder="Enter Profile Name" maxLength={25} />
         </div>
         <div className="toolbar flex">

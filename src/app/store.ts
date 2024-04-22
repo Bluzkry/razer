@@ -1,7 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import profileReducer from '../state/profileSlice';
+
+// @ts-ignore
+const composeEnhancers = (window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose) || compose;
 
 export const store = configureStore({
   reducer: {
+    profiles: profileReducer,
   },
 });
 

@@ -269,3 +269,6 @@ input.profile-item:active {
     position: absolute;
     width: 100%;
 }
+#eqTitle {
+	text-transform: capitalize;
+}
