@@ -1,13 +1,14 @@
 import React from 'react';
-import { useAppSelector } from '../app/hooks';
+import { useAppSelector, useAppDispatch } from '../app/hooks';
 import { ProfileItem } from './ProfileItem';
-import { selectProfiles, selectActiveProfile } from '../state/profileSlice';
+import { selectProfiles, selectActiveProfile, moveProfile } from '../state/profileSlice';
 
 type Props = {};
 
 export const ProfileList: React.FC<Props> = ({}) => {
   const profiles = useAppSelector(selectProfiles);
   const activeProfile = useAppSelector(selectActiveProfile);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="thx-drawer flex">
@@ -24,8 +25,14 @@ export const ProfileList: React.FC<Props> = ({}) => {
           <div className="icon edit" />
           <div className="icon delete" />
 
-          <div className="icon down"></div>
-          <div className="icon up disabled"></div>
+          <div
+            className={`icon down ${activeProfile.position === profiles.length && 'disabled'}`}
+            onClick={() => dispatch(moveProfile({ id: activeProfile.id, moveUp: false }))}
+          />
+          <div
+            className={`icon up ${activeProfile.position === 1 && 'disabled'}`}
+            onClick={() => dispatch(moveProfile({ id: activeProfile.id, moveUp: true }))}
+          />
         </div>
         <div className="profile-del alert flex">
           <div className="title">delete eq</div>

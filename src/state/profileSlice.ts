@@ -21,10 +21,39 @@ export const profileSlice = createSlice({
         data: updatedProfiles,
       };
     },
+    moveProfile: (state, { payload }: { payload: { id: string; moveUp: boolean } }) => {
+      const selectedProfilePosition = state.data.find(({ id }) => id === payload.id)?.position;
+
+      if (!selectedProfilePosition) {
+        console.error('Unable to change position of profile.');
+        return {
+          ...state,
+          error: new Error('Could not find "selectedProfile."'),
+        };
+      }
+
+      const data = state.data.reduce<Array<Profile>>((profiles, profile) => {
+        let { position } = profile;
+        if (payload.moveUp) {
+          if (profile.position === selectedProfilePosition - 1) position++;
+          if (profile.id === payload.id) position--;
+        } else {
+          if (profile.position === selectedProfilePosition + 1) position--;
+          if (profile.id === payload.id) position++;
+        }
+
+        return [...profiles, { ...profile, position }];
+      }, []);
+
+      return {
+        ...state,
+        data,
+      };
+    },
   },
 });
 
-export const { setSelectedProfile } = profileSlice.actions;
+export const { setSelectedProfile, moveProfile } = profileSlice.actions;
 
 export const selectProfiles = createSelector(
   (state: RootState) => state.profiles.data,
